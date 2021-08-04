@@ -1,11 +1,10 @@
-import CSVReader2 from "./components/CSVReader2";
-import CSVDownloader1 from "./components/CSVDownloader";
+import CSVReader2AndDownloader from "./components/CSVReader2AndDownloader";
 
 function App() {
   return (
     <>
-      <CSVReader2 />
-      <CSVDownloader1/>
+      <CSVReader2AndDownloader />
+    
     </>
   );
 }

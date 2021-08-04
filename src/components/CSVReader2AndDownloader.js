@@ -65,15 +65,17 @@ const CSVReader2AndDownloader = () => {
 
   return (
     <>
-      <h4>Step 1: Upload a single column CSV file.</h4>
+      <h4>Step 1: Upload a CSV file with a SINGLE COLUMN of words.</h4>
       <h4>Step 2: Wait for processing to complete.</h4>
       <h4>
-        Step 3: Download the processed file. This file has an additional column that specifies the POS - Parts of Speech
+        Step 3: Download the processed file. This file has an additional column that specifies the Parts of Speech (POS)
         of each word.
       </h4>
       <h4>
-        Step 4: Refer to this link to understand the keys.
-        <a href='https://github.com/finnlp/en-pos#annotation-specification'>See here for tags meanings</a>
+        Step 4: Refer to this link to understand the
+        <a target='_blank' rel='noopener noreferrer' href='https://github.com/finnlp/en-pos#annotation-specification'>
+          POS Tags
+        </a>
       </h4>
       <h4>Step 5: PROFIT</h4>
       <CSVReader

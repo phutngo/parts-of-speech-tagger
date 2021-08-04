@@ -39,40 +39,44 @@ const CSVReader2AndDownloader = () => {
     skipEmptyLines: true,
   };
 
-
   //!transform myData here to an array of words
-  const transform = myData? (_myData) => {
+
+  if (myData) {
     let words = [];
-    for (let i = 0; i < _myData.length; i++) {
-      words.push(_myData[i]["data"][0]);
+    for (let i = 0; i < myData.length; i++) {
+      words.push(myData[i]["data"][0]);
     }
     let tags = new Tag(words)
       .initial() // initial dictionary and pattern based tagging
       .smooth().tags; // further context based smoothing
 
-    console.log(words);
-    console.log(tags);
-
-    return {};
-  } : console.log("NOTHING");
-
-  if (myData) transform(myData);
-
-
+    var final = [];
+    for (let i = 0; i < myData.length; i++) {
+      final.push({
+        ORIGINAL: words[i],
+        POSTAGS: tags[i],
+      });
+    }
+    //setMyData(final);
+    // console.log(words);
+    // console.log(tags);
+    // console.log(myData);
+    // console.log(final)
+  }
 
   // console.log("🟣 ~ file: CSVReader2AndDownloader.js ~ line 8 ~ myData", myData);
   // myData ? console.log(myData[0]["data"][0]) : console.log("no myData yet");
 
   //then use postag to return the transformed myData for download.
-  const postag = () => {
-    return myData;
-  };
 
   return (
     <>
       <h5>
         Upload a single column CSV file, and this parse it, and append a second column with Parts of Speech that you can
         download.
+      </h5>
+      <h5>
+        <a href='https://github.com/finnlp/en-pos#annotation-specification'>See here for tags meanings</a>
       </h5>
       <CSVReader
         config={config}
@@ -83,8 +87,8 @@ const CSVReader2AndDownloader = () => {
       >
         <span>Drop CSV file here or click to upload.</span>
       </CSVReader>
-
-      <CSVDownloader data={postag} type='button' filename={"filename"}>
+      <div>After uploading file, wait for parse to complete then click download.</div>
+      <CSVDownloader data={() => final} type='button' filename={"filename"}>
         Download
       </CSVDownloader>
     </>

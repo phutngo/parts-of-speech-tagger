@@ -8,7 +8,6 @@ const CSVReader2AndDownloader = () => {
   const [myData, setMyData] = useState(null);
 
   const handleOnDrop = (data) => {
-    //console.log(data);
     //console.log(data[0]["data"][0]);
     setMyData(data);
   };
@@ -64,20 +63,19 @@ const CSVReader2AndDownloader = () => {
     // console.log(final)
   }
 
-  // console.log("🟣 ~ file: CSVReader2AndDownloader.js ~ line 8 ~ myData", myData);
-  // myData ? console.log(myData[0]["data"][0]) : console.log("no myData yet");
-
-  //then use postag to return the transformed myData for download.
-
   return (
     <>
-      <h5>
-        Upload a single column CSV file, and this parse it, and append a second column with Parts of Speech that you can
-        download.
-      </h5>
-      <h5>
+      <h4>Step 1: Upload a single column CSV file.</h4>
+      <h4>Step 2: Wait for processing to complete.</h4>
+      <h4>
+        Step 3: Download the processed file. This file has an additional column that specifies the POS - Parts of Speech
+        of each word.
+      </h4>
+      <h4>
+        Step 4: Refer to this link to understand the keys.
         <a href='https://github.com/finnlp/en-pos#annotation-specification'>See here for tags meanings</a>
-      </h5>
+      </h4>
+      <h4>Step 5: PROFIT</h4>
       <CSVReader
         config={config}
         onDrop={handleOnDrop}

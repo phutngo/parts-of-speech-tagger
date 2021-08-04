@@ -2,17 +2,15 @@ import React from "react";
 import { CSVReader, CSVDownloader } from "react-papaparse";
 import { useState } from "react";
 
+const Tag = require("en-pos").Tag;
+
 const CSVReader2AndDownloader = () => {
   const [myData, setMyData] = useState(null);
 
   const handleOnDrop = (data) => {
-    console.log(data);
-    console.log(data[0]["data"][0]);
+    //console.log(data);
+    //console.log(data[0]["data"][0]);
     setMyData(data);
-
-    //console.log(JSON.parse(data));
-    // setDataPackage(data);
-    // console.log("🟥 ~ file: CSVReader2AndDownloader.js ~ line 6 ~ dataPackage", dataPackage);
   };
 
   const handleOnError = (err, file, inputElem, reason) => {
@@ -31,7 +29,6 @@ const CSVReader2AndDownloader = () => {
     header: false,
     transformHeader: undefined,
     dynamicTyping: false,
-    preview: 0,
     encoding: "",
     worker: false,
     comments: false,
@@ -39,19 +36,37 @@ const CSVReader2AndDownloader = () => {
     complete: undefined,
     error: undefined,
     download: false,
-
     skipEmptyLines: true,
   };
 
+
+  //!transform myData here to an array of words
+  const transform = myData? (_myData) => {
+    let words = [];
+    for (let i = 0; i < _myData.length; i++) {
+      words.push(_myData[i]["data"][0]);
+    }
+    let tags = new Tag(words)
+      .initial() // initial dictionary and pattern based tagging
+      .smooth().tags; // further context based smoothing
+
+    console.log(words);
+    console.log(tags);
+
+    return {};
+  } : console.log("NOTHING");
+
+  if (myData) transform(myData);
+
+
+
+  // console.log("🟣 ~ file: CSVReader2AndDownloader.js ~ line 8 ~ myData", myData);
+  // myData ? console.log(myData[0]["data"][0]) : console.log("no myData yet");
+
+  //then use postag to return the transformed myData for download.
   const postag = () => {
-    //takes in the data and tag it here and return the data array
-    //put this function in the data for download
-    const taggedArray = myData;
-
-    return taggedArray;
+    return myData;
   };
-
-  console.log("🟣 ~ file: CSVReader2AndDownloader.js ~ line 8 ~ myData", myData);
 
   return (
     <>

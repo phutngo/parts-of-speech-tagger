@@ -65,6 +65,9 @@ const CSVReader2AndDownloader = () => {
 
   return (
     <>
+      <a target='_blank' rel='noopener noreferrer' href="https://nft-pos-tags.netlify.app/">
+        https://nft-pos-tags.netlify.app/
+      </a>
       <h4>Step 1: Upload a CSV file with a SINGLE COLUMN of words.</h4>
       <h4>Step 2: Wait for processing to complete.</h4>
       <h4>
@@ -88,6 +91,7 @@ const CSVReader2AndDownloader = () => {
         <span>Drop CSV file here or click to upload.</span>
       </CSVReader>
       <div>After uploading file, wait for parse to complete then click download.</div>
+
       <CSVDownloader data={() => final} type='button' filename={"NFTs of NFTs WOOT - POS Tags"}>
         Download
       </CSVDownloader>
